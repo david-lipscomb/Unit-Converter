@@ -3,11 +3,13 @@
 1 liter = 0.264 gallons
 1 kilogram = 2.204 pounds */ 
 let number = []
+let darkmode = localStorage.getItem("darkmode")
 const numInput = document.getElementById("num-inp")
 const convertButton = document.getElementById("convert-btn")
 const lengthSect = document.getElementById("length-sec")
 const volumeSect = document.getElementById("volume-sec")
 const massSect = document.getElementById("mass-sec")
+const toggButton = document.getElementById("toggle-btn")
 
 function feet() {
     let feet = Number(numInput.value) * 3.281
@@ -39,7 +41,25 @@ function pounds() {
     return pound.toFixed(3) + " pounds"
 }
 
+function enableDarkmode() {
+    document.body.classList.add("darkmode")
+    localStorage.setItem("darkmode", "active")
+}
 
+function disableDarkmode() {
+    document.body.classList.remove("darkmode")
+    localStorage.setItem("darkmode", null)
+}
+
+
+toggButton.addEventListener("click", function() {
+    darkmode = localStorage.getItem("darkmode")
+    if (darkmode !== "active") {
+        enableDarkmode()
+    } else {
+        disableDarkmode()
+    }
+})
 
 convertButton.addEventListener("click", function(){
     number = []
